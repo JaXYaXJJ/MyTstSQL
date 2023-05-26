@@ -1,0 +1,42 @@
+###get all bands:
+GET http://localhost:8080/api/v1/bands
+
+###delete:
+DELETE http://localhost:8080/api/v1/bands/503
+
+###get band by country:
+GET http://localhost:8080/api/v1/bands-by-country
+Content-Type: application/json
+
+{
+  "country": "usa"
+}
+
+###get band by country or name:
+GET http://localhost:8080/api/v1/bands-by-country-or-name/q
+
+###get band by country - query parameter:
+GET http://localhost:8080/api/v1/bands/q?country=uk
+
+###add a band:
+POST http://localhost:8080/api/v1/bands
+Content-Type: application/json
+
+{
+  "bandName": "Autechre",
+  "genre": "Electronic",
+  "country": "UK"
+}
+
+###add a band + dto:
+POST http://localhost:8080/api/v1/bands-dto
+Content-Type: application/json
+
+{
+  "bandName": "NOFX",
+  "genre": "Punk Rock",
+  "country": "USA"
+}
+
+###get a band + dto by id:
+GET http://localhost:8080/api/v1/bands-dto/3
