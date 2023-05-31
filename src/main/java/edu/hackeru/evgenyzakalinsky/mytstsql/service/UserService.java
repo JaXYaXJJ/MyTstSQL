@@ -6,14 +6,20 @@ import edu.hackeru.evgenyzakalinsky.mytstsql.entity.User;
 import edu.hackeru.evgenyzakalinsky.mytstsql.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
+    //constructor injection: enables tests to create
+    //instance of UserService with mock repository
+
     //props:
     private final UserRepository userRepository;
+
+    private final PasswordEncoder passwordEncoder;
 
     //before use model mapper or mapstruct:
     //dto -> entity -> save entity to db -> response dto
@@ -35,5 +41,14 @@ public class UserService {
 
         //c. convert the entity to response object + return the response mapped object:
         return mapper.map(saved, UserSignupResponseDto.class);
+    }
+
+    //for tests:
+    public User saveUser(User user) {
+
+        var hashedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hashedPassword);
+
+        return userRepository.save(user);
     }
 }

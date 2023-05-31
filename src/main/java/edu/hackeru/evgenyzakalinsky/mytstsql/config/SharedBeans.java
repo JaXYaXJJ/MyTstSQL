@@ -9,6 +9,7 @@ public class SharedBeans {
 
     @Bean
     public ModelMapper modelMapper() {
+
         return new ModelMapper();
     }
 }

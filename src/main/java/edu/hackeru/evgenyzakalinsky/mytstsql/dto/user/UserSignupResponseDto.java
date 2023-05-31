@@ -1,12 +1,14 @@
 package edu.hackeru.evgenyzakalinsky.mytstsql.dto.user;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserSignupResponseDto {
@@ -18,6 +20,9 @@ public class UserSignupResponseDto {
     private String email;
     private String country;
     private Date registered;
+
+    //for tests:
+    private String message;
 
     //no password:
 }

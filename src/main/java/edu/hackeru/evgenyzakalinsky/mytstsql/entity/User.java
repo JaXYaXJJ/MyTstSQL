@@ -2,10 +2,7 @@ package edu.hackeru.evgenyzakalinsky.mytstsql.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
@@ -51,12 +48,12 @@ public class User {
     private String email;
 
     @NotNull
-    @Size(min = 6)
-    @Pattern(
-            regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?\\W).{8,20}$",
-            message = "Password must contain at least 8 characters, " +
-                    "one or more lower case and uppercase letters, symbol and digits."
-    )
+    @Size(min = 8)
+//    @Pattern(
+//            regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?\\W).{8,20}$",
+//            message = "Password must contain at least 8 characters, " +
+//                    "one or more lower case and uppercase letters, symbol and digits."
+//    )
     private String password; //in real projects: we save the password one-way hash**
 
     @NotNull

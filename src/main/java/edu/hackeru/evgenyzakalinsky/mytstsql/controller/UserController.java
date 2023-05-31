@@ -2,14 +2,12 @@ package edu.hackeru.evgenyzakalinsky.mytstsql.controller;
 
 import edu.hackeru.evgenyzakalinsky.mytstsql.dto.user.UserSignupRequestDto;
 import edu.hackeru.evgenyzakalinsky.mytstsql.dto.user.UserSignupResponseDto;
+import edu.hackeru.evgenyzakalinsky.mytstsql.entity.User;
 import edu.hackeru.evgenyzakalinsky.mytstsql.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
@@ -35,5 +33,14 @@ public class UserController {
 
         //c. return response entity (created = 201), body = dto
         return ResponseEntity.created(uri).body(responseDto);
+    }
+
+    //for tests:
+    @PostMapping("/createUser")
+    public UserSignupResponseDto createUser(@RequestBody User user) {
+
+        userService.saveUser(user);
+
+        return UserSignupResponseDto.builder().message("User Saved").build();
     }
 }
